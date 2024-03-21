@@ -21,43 +21,6 @@
               </p>
               <hr>
           </div>
-          @auth
-          <form method="POST" class="m-3 align-items-end">
-              @csrf
-              <input type="hidden" name="id" value="{{$restaurant->id}}">
-              <div class="row">
-                  <div class="col-7">
-                      <button type="submit" class="btn nagoyameshi-submit-button w-100">
-                          <i class="fas fa-calendar-check"></i>
-                          予約する
-                      </button>
-                  </div>
-                  <div class="col-5">
-                    @if(Auth::user()->favorite_restaurants()->where('restaurant_id',$restaurant->id)->exists())
-                      <a href="{{ route('favorites.destroy',$restaurant->id) }}" class="btn nagoyameshi-submit-button w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
-                          <i class="fa fa-heart"></i>
-                          お気に入り解除
-                      </a>
-                    @else
-                      <a href="{{ route('favorites.store',$restaurant->id) }}" class="btn nagoyameshi-submit-button w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
-                          <i class="fa fa-heart"></i>
-                          お気に入り
-                      </a>
-                    @endif
-                  </div>
-              </div>
-          </form>
-          <form id="favorites-destroy-form" action="{{ route('favorites.destroy', $restaurant->id) }}" method="POST" class="d-none">
-                @csrf
-                @method('DELETE')
-            </form>
-            <form id="favorites-store-form" action="{{ route('favorites.store', $restaurant->id) }}" method="POST" class="d-none">
-                @csrf
-            </form>
-
-          @else
-          <p>ログインしてください</p>
-          @endauth
       </div>
 
       <div class="offset-1 col-11">
