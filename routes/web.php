@@ -36,3 +36,7 @@ require __DIR__.'/auth.php';
 Route::resource('restaurants',RestaurantController::class);
 
 Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->name('favorites.store');
+
+Route::delete('favorites/{restaurant_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');

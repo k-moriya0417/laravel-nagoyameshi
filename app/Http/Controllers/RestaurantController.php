@@ -15,7 +15,7 @@ class RestaurantController extends Controller
      */
     public function index(Request $request)
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::paginate(15);
         $categories = Category::all();
         
 
