@@ -33,6 +33,11 @@
         <li class="nav-item mr-8">
           <a class="nav-link header-text" href="#"><i class="far fa-calendar-check"></i>  予約</a>
         </li>
+        <li class="nav-item mr-5">
+          <a class="nav-link header-text" href="{{ route('mypage') }}">
+            <i class="fas fa-user mr-1"></i>マイページ
+          </a>
+        </li>
         
         <li class="nav-item mr-8">
           <a class="nav-link header-text" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
