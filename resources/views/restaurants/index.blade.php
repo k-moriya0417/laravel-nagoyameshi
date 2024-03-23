@@ -3,6 +3,10 @@
 @section('content')
 
   <div class="container">
+    @if($keyword !== null)
+      <a href="{{ route('restaurants.index') }}">トップ</a> > 店舗一覧
+      <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
+    @endif
       
   </div>
 

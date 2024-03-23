@@ -27,18 +27,10 @@
             @csrf
             <input type="hidden" name="id" value="{{$restaurant->id}}">
             <input type="hidden" name="name" value="{{$restaurant->name}}">
-            <input type="hidden" name="price" value="{{$restaurant->price}}">
-            <div class="form-group row">
-                <label for="quantity" class="col-sm-2 col-form-label">数量</label>
-                <div class="col-sm-10">
-                    <input type="number" id="quantity" name="qty" min="1" value="1" class="form-control w-25">
-                </div>
-            </div>
-            <input type="hidden" name="weight" value="0">
             <div class="row">
                 <div class="col-6">
                     <button type="submit" class="btn nagoyameshi-submit-button w-100">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="far fa-calendar-check"></i> 
                         予約する
                     </button>
                 </div>

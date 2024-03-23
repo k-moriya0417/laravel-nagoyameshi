@@ -15,11 +15,19 @@ class RestaurantController extends Controller
      */
     public function index(Request $request)
     {
-        $restaurants = Restaurant::paginate(15);
-        $categories = Category::all();
-        
 
-        return view('restaurants.index',compact('restaurants','categories'));
+        $categories = Category::all();
+        $keyword = $request->keyword;
+
+        if ($keyword !== null) {
+            $restaurants = Restaurant::where('name','like',"%{$keyword}%")->paginate(15);
+            $total_count = $restaurants->total();
+        } else {
+            $restaurants = Restaurant::paginate(15);
+            $total_count = "";
+        }
+
+        return view('restaurants.index',compact('restaurants','categories','total_count','keyword'));
     }
 
     /**
