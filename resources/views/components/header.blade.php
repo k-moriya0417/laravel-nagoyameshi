@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md shadow-sm nagoyameshi-header-container">
   <div class="container">
-    <a class="navbar-brand" href="{{ url('/restaurants') }}">
+    <a class="navbar-brand" href="{{ route('top') }}">
       {{ config('app.name', 'Laravel') }}
     </a>
     <form action="{{ route('restaurants.index') }}" method="GET" class="row g-1">
@@ -28,7 +28,7 @@
         </li>
         @else
         <li class="nav-item mr-8">
-          <a class="nav-link header-text" href="#"><i class="far fa-heart"></i>  お気に入り</a>
+          <a class="nav-link header-text" href="{{ route('mypage.favorite') }}"><i class="far fa-heart"></i>  お気に入り</a>
         </li>
         <li class="nav-item mr-8">
           <a class="nav-link header-text" href="#"><i class="far fa-calendar-check"></i>  予約</a>

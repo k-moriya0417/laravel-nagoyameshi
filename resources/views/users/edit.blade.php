@@ -87,6 +87,20 @@
                         @enderror
                     </div>
                 </div>
+                <br>
+
+                <div class="form-group">
+                    <div class="d-flex justify-content-between">
+                        <label for="membership" class="text-md-left nagoyameshi-edit-user-info-label">会員区分</label>
+                    </div>
+                    <div class="ms-2 mt-2">
+                      @if ($user->membership)
+                      <p>無料会員</p>
+                      @else
+                      <p>有料会員</p>
+                      @endif
+                    </div>
+                </div>
 
                 <hr>
                 <button type="submit" class="btn nagoyameshi-submit-button mt-3 w-25">

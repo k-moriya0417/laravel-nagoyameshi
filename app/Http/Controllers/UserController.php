@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,16 @@ class UserController extends Controller
          $user->update();
  
          return to_route('mypage');
+    }
+
+    public function favorite()
+    {
+        $user = Auth::user();
+        $categories = Category::all();
+ 
+        $favorite_restaurants = $user->favorite_restaurants;
+
+        return view('users.favorite', compact('favorite_restaurants','categories'));
     }
 
 }
