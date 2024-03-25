@@ -6,15 +6,16 @@
     <div class="container m-4">
       <div class="row w-100 m-4">
         <div>
-          <a href="{{ route('restaurants.index') }}">店舗一覧</a>
+          <a href="{{ route('restaurants.index') }}"><h1>店舗一覧</h1></a>
         </div>
         
+        <h1 class="mt-2">新規店舗</h1>
         @foreach($restaurants as $restaurant)
         <div class="col-4">
           <div class="row mt-4">
             <div>
               <a href="{{ route('restaurants.show',$restaurant) }}">
-                <img src="{{ asset('img/dummy.png') }}" class="img-thumbnail">
+                <img src="{{ asset($restaurant->img) }}" class="img-thumbnail">
               </a>
             </div>
             <div>
@@ -25,19 +26,15 @@
           </div>
         </div>
         @endforeach
-      </div>
-      {{ $restaurants->links() }}
       
-      <p>カテゴリ一覧</p>
-      @foreach($category_names as $category_name)
-      <div class="col-2">
-        <div class="">
-          <p>
-          {{$category_name}}
-          </p>
+      <div class="mt-5">
+        <h1>カテゴリ一覧</h1>
+        <div class="d-flex flex-wrap mx-1 mb-1">
+          @foreach($category_names as $category_name)
+            <span class="btn btn-outline-secondary btn-sm me-1 mb-2">{{$category_name}}</span>
+          @endforeach
         </div>
       </div>
-      @endforeach
 
     </div>
     </div>

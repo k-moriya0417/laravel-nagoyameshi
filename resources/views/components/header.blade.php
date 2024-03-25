@@ -20,26 +20,27 @@
       <ul class="navbar-nav ms-auto mr-5 mt-2">
         <!-- Authentication Links -->
         @guest
-        <li class="nav-item mr-8">
-          <a class="nav-link header-text" href="{{ route('register') }}">  {{ __('会員登録') }}</a>
+        <li class="nav-item ms-2">
+          <a class="nav-link header-text" href="{{ route('register') }}">
+          <i class="fa-solid fa-user-plus me-1"></i>  {{ __('会員登録') }}</a>
         </li>
-        <li class="nav-item mr-8">
-          <a class="nav-link header-text" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i>  {{ __('ログイン') }}</a>
+        <li class="nav-item ms-2">
+          <a class="nav-link header-text" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket me-1"></i>  {{ __('ログイン') }}</a>
         </li>
         @else
-        <li class="nav-item mr-8">
+        <li class="nav-item ms-2">
           <a class="nav-link header-text" href="{{ route('mypage.favorite') }}"><i class="far fa-heart"></i>  お気に入り</a>
         </li>
-        <li class="nav-item mr-8">
+        <li class="nav-item ms-2">
           <a class="nav-link header-text" href="#"><i class="far fa-calendar-check"></i>  予約</a>
         </li>
-        <li class="nav-item mr-5">
+        <li class="nav-item ms-2">
           <a class="nav-link header-text" href="{{ route('mypage') }}">
             <i class="fas fa-user mr-1"></i>マイページ
           </a>
         </li>
         
-        <li class="nav-item mr-8">
+        <li class="nav-item ms-2">
           <a class="nav-link header-text" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-right-from-bracket"></i>  ログアウト
           </a>

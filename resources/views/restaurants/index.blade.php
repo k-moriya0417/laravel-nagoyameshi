@@ -2,16 +2,26 @@
 
 @section('content')
 
-  <div class="container">
-    @if($keyword !== null)
-      <a href="{{ route('restaurants.index') }}">トップ</a> > 店舗一覧
-      <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
-    @endif
-      
-  </div>
+
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-2 bg-light">
+         @component('components.sidebar', ['categories' => $categories])
+         @endcomponent
+     </div>
+    <div class="col-9 py-2">
+      <div class="container">
+        @if($keyword !== null)
+          <a href="{{ route('top') }}">トップ</a> > 
+          <a href="{{ route('restaurants.index') }}">店舗一覧</a>
+          <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
+        @elseif ($category !== null)
+          <a href="{{ route('top') }}">トップ</a> > 
+          <a href="{{ route('restaurants.index') }}">店舗一覧</a>
+          <h1>"{{ $category->category_name }}"の検索結果{{$total_count}}件</h1>
+        @endif
+      </div>
+
       <div class="container m-4">
         <div class="row w-100">
         
@@ -20,7 +30,7 @@
           <div class="row mt-4">
             <div class="col-6">
               <a href="{{ route('restaurants.show',$restaurant) }}">
-                <img src="{{ asset('img/dummy.png') }}" class="img-thumbnail">
+                <img src="{{ asset($restaurant->img) }}" class="img-thumbnail">
               </a>
             </div>
             <div class="col-6">
@@ -52,7 +62,7 @@
 
         </div>
       </div>
-      {{ $restaurants->links() }}
+      {{ $restaurants->appends(request()->query())->links() }}
     </div>
   </div>
  

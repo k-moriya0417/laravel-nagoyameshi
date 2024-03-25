@@ -21,19 +21,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',  [WebController::class, 'index'])->name('top');
 
+Route::get('restaurants', [RestaurantController::class,'index']);
+
 require __DIR__.'/auth.php';
 
-Route::resource('restaurants',RestaurantController::class);
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::resource('restaurants',RestaurantController::class);
 
-Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->name('favorites.store');
+    Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
-Route::delete('favorites/{restaurant_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+    Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->name('favorites.store');
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('users/mypage', 'mypage')->name('mypage');
-    Route::get('users/mypage/edit', 'edit')->name('mypage.edit');
-    Route::put('users/mypage', 'update')->name('mypage.update');
-    Route::get('users/mypage/favorite', 'favorite')->name('mypage.favorite');
+    Route::delete('favorites/{restaurant_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('users/mypage', 'mypage')->name('mypage');
+        Route::get('users/mypage/edit', 'edit')->name('mypage.edit');
+        Route::put('users/mypage', 'update')->name('mypage.update');
+        Route::get('users/mypage/favorite', 'favorite')->name('mypage.favorite');
+    });
+
 });

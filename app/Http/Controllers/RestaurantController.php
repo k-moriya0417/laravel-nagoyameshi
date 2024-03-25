@@ -22,12 +22,20 @@ class RestaurantController extends Controller
         if ($keyword !== null) {
             $restaurants = Restaurant::where('name','like',"%{$keyword}%")->paginate(15);
             $total_count = $restaurants->total();
+            $category = null;
         } else {
-            $restaurants = Restaurant::paginate(15);
-            $total_count = "";
+            if ($request->category !== null) {
+                $restaurants = Restaurant::where('category_id',$request->category)->paginate(15);
+                $total_count = Restaurant::where('category_id',$request->category)->count();
+                $category = Category::find($request->category);
+            } else {
+                $restaurants = Restaurant::paginate(15);
+                $total_count = "";
+                $category = null;
+            }
         }
 
-        return view('restaurants.index',compact('restaurants','categories','total_count','keyword'));
+        return view('restaurants.index',compact('restaurants','category','categories','total_count','keyword'));
     }
 
     /**
