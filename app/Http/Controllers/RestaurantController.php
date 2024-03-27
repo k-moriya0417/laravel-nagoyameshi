@@ -20,16 +20,16 @@ class RestaurantController extends Controller
         $keyword = $request->keyword;
 
         if ($keyword !== null) {
-            $restaurants = Restaurant::where('name','like',"%{$keyword}%")->paginate(15);
+            $restaurants = Restaurant::where('name','like',"%{$keyword}%")->sortable()->paginate(15);
             $total_count = $restaurants->total();
             $category = null;
         } else {
             if ($request->category !== null) {
-                $restaurants = Restaurant::where('category_id',$request->category)->paginate(15);
+                $restaurants = Restaurant::where('category_id',$request->category)->sortable()->paginate(15);
                 $total_count = Restaurant::where('category_id',$request->category)->count();
                 $category = Category::find($request->category);
             } else {
-                $restaurants = Restaurant::paginate(15);
+                $restaurants = Restaurant::sortable()->paginate(15);
                 $total_count = "";
                 $category = null;
             }
@@ -80,7 +80,11 @@ class RestaurantController extends Controller
     {
         $reviews = $restaurant->reviews()->get();
 
-        return view('restaurants.show',compact('restaurant','reviews'));
+        $averageScore = $restaurant->reviews()->avg('score');
+        $aveStar = round($averageScore, 1);
+        $dataStar =  round($averageScore * 2, 0) / 2;
+
+        return view('restaurants.show',compact('restaurant','reviews','aveStar','dataStar'));
     }
 
     /**

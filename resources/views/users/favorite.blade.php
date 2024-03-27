@@ -12,7 +12,7 @@
                 <div class="col-md-7 mt-2">
                     <div class="d-inline-flex">
                         <a href="{{ route('restaurants.show', $favorite_restaurant->id) }}" class="w-25">
-                            <img src="{{ asset('img/dummy.png')}}" class="img-fluid w-100">
+                            <img src="{{ asset($favorite_restaurant->img) }}" class="img-fluid w-100">
                         </a>
                         <div class="container mt-3">
                             <h5 class="w-100 nagoyameshi-favorite-item-text">{{ $favorite_restaurant->name }}</h5>

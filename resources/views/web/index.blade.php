@@ -30,8 +30,10 @@
       <div class="mt-5">
         <h1>カテゴリ一覧</h1>
         <div class="d-flex flex-wrap mx-1 mb-1">
-          @foreach($category_names as $category_name)
-            <span class="btn btn-outline-secondary btn-sm me-1 mb-2">{{$category_name}}</span>
+          @foreach($categories as $category)
+          <a href="{{ route('restaurants.index', ['category' => $category->id]) }}">
+            <label class="btn btn-outline-secondary btn-sm me-1 mb-2">{{$category->category_name}}</label>
+          </a>
           @endforeach
         </div>
       </div>

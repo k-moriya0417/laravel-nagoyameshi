@@ -204,3 +204,92 @@ label {
 .mypage-icon {
   color: #D7000F;
 }
+
+.star-wrapper {
+  position: relative;
+  width: 70px;
+}
+.star-rating::before {
+  content:  "★★★★★";
+  color: #ccc;
+}
+.star-rating[data-rate="5"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+}
+.star-rating[data-rate="4.5"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 90%;
+}
+.star-rating[data-rate="4"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 80%;
+}
+.star-rating[data-rate="3.5"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 70%;
+}
+.star-rating[data-rate="3"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 60%;
+}
+.star-rating[data-rate="2.5"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 50%;
+}
+.star-rating[data-rate="2"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 40%;
+}
+.star-rating[data-rate="1.5"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 30%;
+}
+.star-rating[data-rate="1"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 20%;
+}
+.star-rating[data-rate="0.5"]::after {
+  content: "★★★★★";
+  color: #0fbe9f;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 10%;
+}

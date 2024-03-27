@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="d-flex justify-content-center">
-  <div class="row w-75">
+  <div class="row w-75 py-5">
       <div class="col-5 offset-1">
-          <img src="{{ asset('img/dummy.png')}}" class="w-100 img-fluid">
+          <img src="{{ asset($restaurant->img) }}" class="w-100 img-fluid">
       </div>
       <div class="col">
           <div class="d-flex flex-column">
@@ -17,7 +17,18 @@
               </p>
               <hr>
               <p class="d-flex align-items-end">
-                  {{$restaurant->business_hours}}
+                  営業時間：{{$restaurant->business_hours}}
+              </p>
+              <p class="d-flex align-items-end">
+                  住所：{{$restaurant->address}}
+              </p>
+              <p class="d-flex align-items-end">
+                  電話番号：{{$restaurant->phone_number}}
+              </p>
+              <p>平均評価：{{ $aveStar }}
+              <span class="star-wrapper">
+                <span class="star-rating" data-rate="{{ $dataStar }}"></span>
+              </span>
               </p>
               <hr>
           </div>
@@ -66,9 +77,9 @@
       <div class="offset-1 col-10">
           <div class="row">
             @foreach($reviews as $review)
-            <div class="offset-md-5 col-md-5">
+            <div class="offset-md-5 col-md-5 mb-4">
                 <p class="h3">{{$review->title}}</p>
-                <p class="h4">{{$review->content}}</p>
+                <label class="">{{$review->content}}</label>
                 <label>{{$review->created_at}} {{$review->user->name}}</label>
             </div>
             @endforeach

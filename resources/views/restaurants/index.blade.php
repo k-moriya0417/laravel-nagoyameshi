@@ -22,6 +22,11 @@
         @endif
       </div>
 
+      <div>
+        並べ替え
+        @sortablelink('updated_at','更新日時')
+      </div>
+
       <div class="container m-4">
         <div class="row w-100">
         
