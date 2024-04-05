@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="d-flex justify-content-center">
+
   <div class="row w-75 py-5">
       <div class="col-5 offset-1">
           <img src="{{ asset($restaurant->img) }}" class="w-100 img-fluid">
@@ -33,17 +34,31 @@
               <hr>
           </div>
 
-      @auth
+      @include('reservations.create') 
+      @include('users.upgrade')       
+
       <form method="POST" class="m-3 align-items-end">
             @csrf
             <input type="hidden" name="id" value="{{$restaurant->id}}">
             <input type="hidden" name="name" value="{{$restaurant->name}}">
             <div class="row">
                 <div class="col-6">
-                    <button type="submit" class="btn nagoyameshi-submit-button w-100">
-                        <i class="far fa-calendar-check"></i> 
-                        予約する
-                    </button>
+                    @if ($user->membership)
+                        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <button type="button" class="btn nagoyameshi-submit-button w-100">
+                            <i class="far fa-calendar-check"></i> 
+                            予約する
+                        </button>
+                        </a>
+                    @else
+                        <a href="" data-bs-toggle="modal" data-bs-target="#noModal">
+                        <button type="button" class="btn nagoyameshi-submit-button w-100">
+                            <i class="far fa-calendar-check"></i> 
+                            予約する
+                        </button>
+                        </a>
+                    @endif
+
                 </div>
                 <div class="col-6">
                 @if(Auth::user()->favorite_restaurants()->where('restaurant_id', $restaurant->id)->exists())
@@ -67,7 +82,7 @@
         <form id="favorites-store-form" action="{{ route('favorites.store', $restaurant->id) }}" method="POST" class="d-none">
             @csrf
         </form>
-      @endauth
+    
       </div>
       <div class="offset-1 col-11">
           <hr class="w-100">

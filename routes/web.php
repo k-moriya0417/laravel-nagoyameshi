@@ -6,6 +6,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',  [WebController::class, 'index'])->name('top');
-
-Route::get('restaurants', [RestaurantController::class,'index']);
 
 require __DIR__.'/auth.php';
 
@@ -40,6 +39,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('users/mypage/edit', 'edit')->name('mypage.edit');
         Route::put('users/mypage', 'update')->name('mypage.update');
         Route::get('users/mypage/favorite', 'favorite')->name('mypage.favorite');
+        Route::get('users/mypage/reservations', 'reservations')->name('mypage.reservations');
+        Route::get('users/mypage/upgrade','upgrade')->name('mypage.upgrade');
+        Route::get('users/mypage/downgrade','downgrade')->name('mypage.downgrade');
     });
+
+    Route::resource('reservations', ReservationController::class)->only(['index', 'store', 'update', 'destroy']);
 
 });
