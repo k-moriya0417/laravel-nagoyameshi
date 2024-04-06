@@ -26,7 +26,7 @@
                         </table>
 
                         <div>
-                            <button type="submit" class="btn nagoyameshi-submit-button">登録</button>
+                            <button type="submit" class="btn nagoyameshi-submit-button">予約申込</button>
                         </div>
                     </form>
                 </div>

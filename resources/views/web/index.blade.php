@@ -5,9 +5,7 @@
   <div class="col-12">
     <div class="container m-4">
       <div class="row w-100 m-4">
-        <div>
-          <a href="{{ route('restaurants.index') }}"><h1>店舗一覧</h1></a>
-        </div>
+
         
         <h1 class="mt-2">新着店舗</h1>
         @foreach($restaurants as $restaurant)
@@ -26,7 +24,9 @@
           </div>
         </div>
         @endforeach
-      
+      <div>
+        <a href="{{ route('restaurants.index') }}"><h1>もっと見る</h1></a>
+      </div>
       <div class="mt-5">
         <h1>カテゴリ一覧</h1>
         <div class="d-flex flex-wrap mx-1 mb-1">

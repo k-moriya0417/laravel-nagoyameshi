@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
+
+        @include('users.membership') 
+        @include('users.downgrade') 
             <span>
                 <a href="{{ route('mypage') }}">マイページ</a> > 会員情報の編集
             </span>
@@ -93,11 +96,13 @@
                     <div class="d-flex justify-content-between">
                         <label for="membership" class="text-md-left nagoyameshi-edit-user-info-label">会員区分</label>
                     </div>
-                    <div class="ms-2 mt-2">
+                    <div class="d-flex justify-content-between ms-2 mt-2">
                       @if ($user->membership)
-                      <p>有料会員</p><a href="{{ route('mypage.downgrade') }}">ダウングレード</a>
+                      <p class="py-2">有料会員</p>
+                      <a class="ms-auto" href="" data-bs-toggle="modal" data-bs-target="#downModal">ダウングレード</a>
                       @else
-                      <p>無料会員</p><a href="{{ route('mypage.upgrade') }}">アップグレード</a>
+                      <p class="py-2">無料会員</p>
+                        <a class="ms-auto" href="" data-bs-toggle="modal" data-bs-target="#memberModal">アップグレード</a>
                       @endif
                     </div>
                     

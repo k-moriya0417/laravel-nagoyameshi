@@ -141,6 +141,20 @@ label {
   background-color: #D7000F;
 }
 
+.upgrade-submit-button {
+  font-family: YuGo;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  background-color: #FFDA3F;
+}
+
+.btn a {
+  text-decoration: none;
+}
 .nagoyameshi-favorite-button {
   font-family: YuGo;
   font-size: 14px;
@@ -199,6 +213,10 @@ label {
   color: #ffffff;
   text-shadow: 0 0 2px #000000;
   font-weight: bolder;
+}
+
+.header-text:hover{
+  color: #ffffff;
 }
 
 .mypage-icon {
