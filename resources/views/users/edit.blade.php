@@ -95,11 +95,12 @@
                     </div>
                     <div class="ms-2 mt-2">
                       @if ($user->membership)
-                      <p>無料会員</p>
+                      <p>有料会員</p><a href="{{ route('mypage.downgrade') }}">ダウングレード</a>
                       @else
-                      <p>有料会員</p>
+                      <p>無料会員</p><a href="{{ route('mypage.upgrade') }}">アップグレード</a>
                       @endif
                     </div>
+                    
                 </div>
 
                 <hr>

@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <a href="{{route('mypage')}}">
+                    <a href="{{route('mypage.reservations')}}">
                         <i class="fas fa-chevron-right fa-2x mypage-icon"></i>
                     </a>
                 </div>

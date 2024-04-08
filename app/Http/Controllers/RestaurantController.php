@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -78,13 +80,14 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        $user = Auth::user();
         $reviews = $restaurant->reviews()->get();
 
         $averageScore = $restaurant->reviews()->avg('score');
         $aveStar = round($averageScore, 1);
         $dataStar =  round($averageScore * 2, 0) / 2;
 
-        return view('restaurants.show',compact('restaurant','reviews','aveStar','dataStar'));
+        return view('restaurants.show',compact('restaurant','reviews','aveStar','dataStar','user'));
     }
 
     /**

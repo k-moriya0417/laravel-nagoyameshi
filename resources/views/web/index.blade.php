@@ -9,7 +9,7 @@
           <a href="{{ route('restaurants.index') }}"><h1>店舗一覧</h1></a>
         </div>
         
-        <h1 class="mt-2">新規店舗</h1>
+        <h1 class="mt-2">新着店舗</h1>
         @foreach($restaurants as $restaurant)
         <div class="col-4">
           <div class="row mt-4">

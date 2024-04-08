@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Restaurant;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -58,6 +60,32 @@ class UserController extends Controller
         $favorite_restaurants = $user->favorite_restaurants;
 
         return view('users.favorite', compact('favorite_restaurants','categories'));
+    }
+
+    public function reservations()
+    {
+        $user = Auth::user();
+        $restaurants = Restaurant::all();
+        $reservation_restaurants = Reservation::where('user_id',$user->id)->get();
+
+        return view('users.reservations',compact('reservation_restaurants','restaurants'));
+    }
+
+    public function upgrade()
+    {
+        $user = Auth::user();
+        $user->membership = true;
+        $user->update();
+        
+        return view('users.edit',compact('user'));
+    }
+    public function downgrade()
+    {
+        $user = Auth::user();
+        $user->membership = false;
+        $user->update();
+        
+        return view('users.edit',compact('user'));
     }
 
 }
