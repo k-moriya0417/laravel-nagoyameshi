@@ -17,7 +17,7 @@
                                 </td>
                             </tr>
                                 <td><label class="me-2">日付</label></td>
-                                <td><input type="date" name="date" class="form-control nagoyameshi-login-input"></td>
+                                <td><input type="datetime-local" name="datetime" class="form-control nagoyameshi-login-input"></td>
                             </tr>
                             <tr>
                                 <td><label class="me-2">人数</label></td>

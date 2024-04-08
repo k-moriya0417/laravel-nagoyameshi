@@ -8,6 +8,8 @@ use App\Models\Restaurant;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class UserController extends Controller
 {
@@ -76,9 +78,30 @@ class UserController extends Controller
         $user = Auth::user();
         $user->membership = true;
         $user->update();
-        
-        return view('users.edit',compact('user'));
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $line_items[] = [
+            'price_data' => [
+                'currency' => 'jpy',
+                'product_data' => [
+                    'name' => '有料会員プラン',
+                ],
+                'unit_amount' => 300,
+            ],
+            'quantity' => 1,
+        ];
+ 
+        $checkout_session = Session::create([
+            'line_items' => $line_items,
+            'mode' => 'payment',
+            'success_url' => route('checkout.success'),
+            'cancel_url' => route('mypage.edit'),
+        ]);
+
+        return redirect($checkout_session->url);
     }
+    
     public function downgrade()
     {
         $user = Auth::user();

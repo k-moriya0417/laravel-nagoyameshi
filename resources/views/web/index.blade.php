@@ -25,10 +25,10 @@
         </div>
         @endforeach
       <div>
-        <a href="{{ route('restaurants.index') }}"><h1>もっと見る</h1></a>
+        <a class="nagoyameshi-link" href="{{ route('restaurants.index') }}"><h1 class="py-4">もっと見る</h1></a>
       </div>
       <div class="mt-5">
-        <h1>カテゴリ一覧</h1>
+        <h1>カテゴリから選ぶ</h1>
         <div class="d-flex flex-wrap mx-1 mb-1">
           @foreach($categories as $category)
           <a href="{{ route('restaurants.index', ['category' => $category->id]) }}">

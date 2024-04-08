@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
   <div class="row">
     <div class="col-2 bg-light">
          @component('components.sidebar', ['categories' => $categories])

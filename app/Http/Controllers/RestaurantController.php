@@ -82,12 +82,13 @@ class RestaurantController extends Controller
     {
         $user = Auth::user();
         $reviews = $restaurant->reviews()->get();
+        $categories = Category::all();
 
         $averageScore = $restaurant->reviews()->avg('score');
         $aveStar = round($averageScore, 1);
         $dataStar =  round($averageScore * 2, 0) / 2;
 
-        return view('restaurants.show',compact('restaurant','reviews','aveStar','dataStar','user'));
+        return view('restaurants.show',compact('restaurant','reviews','aveStar','dataStar','user','categories'));
     }
 
     /**

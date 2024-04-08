@@ -219,6 +219,11 @@ label {
   color: #ffffff;
 }
 
+.nagoyameshi-link {
+  text-decoration: none;
+  color: #000000;
+}
+
 .mypage-icon {
   color: #D7000F;
 }

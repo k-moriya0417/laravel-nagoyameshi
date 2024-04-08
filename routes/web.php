@@ -7,6 +7,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,5 +46,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::resource('reservations', ReservationController::class)->only(['index', 'store', 'update', 'destroy']);
+
+    Route::controller(CheckoutController::class)->group(function () {
+        Route::get('checkout', 'index')->name('checkout.index');
+        Route::post('checkout', 'store')->name('checkout.store');
+        Route::get('checkout/success', 'success')->name('checkout.success');
+    });
 
 });

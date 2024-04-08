@@ -2,6 +2,7 @@
 
 use Illuminate\Routing\Router;
 use App\Admin\Controllers\RestaurantController;
+use App\Admin\Controllers\CategoryController;
 
 Admin::routes();
 
@@ -14,5 +15,5 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('restaurants',RestaurantController::class);
-
+    $router->resource('categories', CategoryController::class);
 });

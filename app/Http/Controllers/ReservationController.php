@@ -32,7 +32,7 @@ class ReservationController extends Controller
         $reservation = new Reservation();
         $reservation->restaurant_id = $request->input('restaurant_id');
         $reservation->user_id = Auth::id();
-        $reservation->date = $request->input('date');
+        $reservation->date = $request->input('datetime');
         $reservation->guests = $request->input('guests');
 
         $reservation->save();
