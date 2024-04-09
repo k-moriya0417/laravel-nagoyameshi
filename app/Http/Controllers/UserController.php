@@ -75,9 +75,6 @@ class UserController extends Controller
 
     public function upgrade()
     {
-        $user = Auth::user();
-        $user->membership = true;
-        $user->update();
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
 

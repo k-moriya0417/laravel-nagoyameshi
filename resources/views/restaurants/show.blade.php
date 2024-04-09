@@ -41,7 +41,8 @@
                 </div>
 
             @include('reservations.create') 
-            @include('users.upgrade')       
+            @include('users.upgrade') 
+            @include('users.membership')       
 
             <form method="POST" class="m-3 align-items-end">
                 @csrf
@@ -67,16 +68,23 @@
 
                     </div>
                 <div class="col-6">
-                @if(Auth::user()->favorite_restaurants()->where('restaurant_id', $restaurant->id)->exists())
-                    <a href="{{ route('favorites.destroy', $restaurant->id) }}" class="btn nagoyameshi-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
-                        <i class="fa fa-heart"></i>
-                        お気に入り解除
-                    </a>
+                @if($user->membership)
+                    @if(Auth::user()->favorite_restaurants()->where('restaurant_id', $restaurant->id)->exists())
+                        <a href="{{ route('favorites.destroy', $restaurant->id) }}" class="btn nagoyameshi-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
+                            <i class="fa fa-heart"></i>
+                            お気に入り解除
+                        </a>
+                    @else
+                        <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn nagoyameshi-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
+                            <i class="fa fa-heart"></i>
+                            お気に入り
+                        </a>
+                    @endif
                 @else
-                    <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn nagoyameshi-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
-                        <i class="fa fa-heart"></i>
-                        お気に入り
-                    </a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#noModal" class="btn nagoyameshi-favorite-button text-favorite w-100">
+                            <i class="fa fa-heart"></i>
+                            お気に入り
+                        </a>
                 @endif
                 </div>
             </div>

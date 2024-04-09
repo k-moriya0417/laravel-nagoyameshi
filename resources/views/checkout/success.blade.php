@@ -9,6 +9,12 @@
             <p class="text-center lh-lg mb-5">
                 予約機能を使用できるようになりました
             </p>
+            <p class="text-center lh-lg mb-5">
+                お気に入り機能を使用できるようになりました
+            </p>
+            <p class="text-center lh-lg mb-5">
+                レビューの投稿ができるようになりました
+            </p>
 
             <div class="text-center">
                 <a href="{{ route('mypage.edit') }}" class="btn nagoyameshi-submit-button w-75 text-white">マイページに戻る</a>

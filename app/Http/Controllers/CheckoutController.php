@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,10 @@ class CheckoutController extends Controller
  
      public function success()
      {
+        $user = Auth::user();
+        $user->membership = true;
+        $user->update();
+
          return view('checkout.success');
      }
 }

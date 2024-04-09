@@ -8,6 +8,7 @@
             <div class="modal-body">
                 <div class="d-flex justify-content-center">
                     <p>有料会員のみです</p>
+                    <a class="ms-auto" href="" data-bs-toggle="modal" data-bs-target="#memberModal">アップグレードする</a>
                 </div>
             </div>
         </div>
