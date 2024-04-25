@@ -16,8 +16,9 @@
         <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
         <!-- Scripts -->
-
         <script src="https://kit.fontawesome.com/5501f28243.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{ asset('js/script.js')}}"></script>
 
         <!-- Styles -->
         <link href="{{ asset('css/nagoyameshi.css') }}" rel="stylesheet">

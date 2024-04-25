@@ -69,16 +69,16 @@
                     </div>
                 <div class="col-6">
                 @if($user->membership)
-                    @if(Auth::user()->favorite_restaurants()->where('restaurant_id', $restaurant->id)->exists())
-                        <a href="{{ route('favorites.destroy', $restaurant->id) }}" class="btn nagoyameshi-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
+                    @if (!$restaurant->isLikeBy(Auth::user()))
+                        <span data-restaurant-id="{{ $restaurant->id }}" class="btn like-toggle nagoyameshi-favorite-button text-favorite w-100">
                             <i class="fa fa-heart"></i>
                             お気に入り解除
-                        </a>
+                        </span>
                     @else
-                        <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn nagoyameshi-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
+                        <span data-restaurant-id="{{ $restaurant->id }}" class="btn like-toggle liked nagoyameshi-favorite-button text-favorite w-100 liked">
                             <i class="fa fa-heart"></i>
                             お気に入り
-                        </a>
+                        </span>
                     @endif
                 @else
                         <a href="" data-bs-toggle="modal" data-bs-target="#noModal" class="btn nagoyameshi-favorite-button text-favorite w-100">
