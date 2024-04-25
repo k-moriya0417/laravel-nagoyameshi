@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Category;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class RestaurantController extends Controller
 {
@@ -82,12 +84,16 @@ class RestaurantController extends Controller
     {
         $user = Auth::user();
         $reviews = $restaurant->reviews()->get();
+        $categories = Category::all();
 
         $averageScore = $restaurant->reviews()->avg('score');
         $aveStar = round($averageScore, 1);
         $dataStar =  round($averageScore * 2, 0) / 2;
 
-        return view('restaurants.show',compact('restaurant','reviews','aveStar','dataStar','user'));
+        $restaurants = Restaurant::withCount('likes')->get();
+        $param = ['restaurants' => '$restaurants',];
+
+        return view('restaurants.show',compact('restaurant','reviews','aveStar','dataStar','user','categories','param'));
     }
 
     /**
@@ -134,5 +140,27 @@ class RestaurantController extends Controller
         $restaurant->delete();
 
         return to_route('restaurants.index');
+    }
+
+    public function like(Request $request)
+    {
+
+        $user_id = Auth::user()->id;
+        $restaurant_id = $request->restaurant_id;
+        $already_liked = Like::where('user_id',$user_id)->where('restaurant_id',$restaurant_id)->first();
+
+        if (!$already_liked) {
+            $like = new Like;
+            $like->restaurant_id = $restaurant_id;
+            $like->user_id = $user_id;
+            $like->save();
+        } else {
+            Like::where('restaurant_id',$restaurant_id)->where('user_id',$user_id)->delete();
+        }
+        $restaurant_likes_count = Restaurant::withCount('likes')->findOrFail($restaurant_id)->likes_count;
+        $param = [        
+            'restaurant_likes_count' => $restaurant_likes_count,
+        ];
+        return response()->json($param);
     }
 }

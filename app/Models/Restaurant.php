@@ -25,6 +25,14 @@ class Restaurant extends Model
     }
 
     public function reservation_users() {
-        return $this->hasMany(reservation::class);
+        return $this->hasMany(Reservation::class);
+    }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function isLikeBy($user): bool {
+        return Like::where('user_id',$user->id)->where('restaurant_id',$this->id)->first() !==null;
     }
 }

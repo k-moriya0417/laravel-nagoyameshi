@@ -29,9 +29,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                <div class="col-md-4 d-flex align-items-center justify-content-end">
                     <a href="{{ route('reservations.destroy', $reservation_restaurant->id) }}" class="nagoyameshi-favorite-item-delete" onclick="event.preventDefault(); document.getElementById('reservations-destroy-form').submit();">
-                        削除
+                        予約キャンセル
                     </a>
                     <form id="reservations-destroy-form" action="{{ route('reservations.destroy', $reservation_restaurant->id) }}" method="POST" class="d-none">
                         @csrf

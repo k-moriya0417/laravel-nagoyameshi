@@ -2,35 +2,33 @@
 
 @section('content')
 
+<div class="row">
+  <div class="col-2 bg-light">
+    @component('components.sidebar', ['categories' => $categories])
+    @endcomponent
+  </div>
+  <div class="col-9 py-2">
+    <div class="container">
+      @if($keyword !== null)
+        <a href="{{ route('top') }}">トップ</a> > 
+        <a href="{{ route('restaurants.index') }}">店舗一覧</a>
+        <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
+      @elseif ($category !== null)
+        <a href="{{ route('top') }}">トップ</a> > 
+        <a href="{{ route('restaurants.index') }}">店舗一覧</a>
+        <h1>"{{ $category->category_name }}"の検索結果{{$total_count}}件</h1>
+      @endif
+    </div>
 
+    <div>
+      並べ替え
+      @sortablelink('updated_at','更新日時')
+    </div>
 
-  <div class="row">
-    <div class="col-2 bg-light">
-         @component('components.sidebar', ['categories' => $categories])
-         @endcomponent
-     </div>
-    <div class="col-9 py-2">
-      <div class="container">
-        @if($keyword !== null)
-          <a href="{{ route('top') }}">トップ</a> > 
-          <a href="{{ route('restaurants.index') }}">店舗一覧</a>
-          <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
-        @elseif ($category !== null)
-          <a href="{{ route('top') }}">トップ</a> > 
-          <a href="{{ route('restaurants.index') }}">店舗一覧</a>
-          <h1>"{{ $category->category_name }}"の検索結果{{$total_count}}件</h1>
-        @endif
-      </div>
-
-      <div>
-        並べ替え
-        @sortablelink('updated_at','更新日時')
-      </div>
-
-      <div class="container m-4">
-        <div class="row w-100">
+    <div class="container m-4">
+      <div class="row w-100">
         
-        @foreach($restaurants as $restaurant)
+      @foreach($restaurants as $restaurant)
         <div class="col-12">
           <div class="row mt-4">
             <div class="col-6">
@@ -48,9 +46,9 @@
               
                 @foreach($categories as $category)
                   @if($category->id == $restaurant->category_id)
-                  <p class="nagoyameshi-product-label mt-2">
-                  カテゴリ：{{$category->category_name}}
-                  </p>
+                    <p class="nagoyameshi-product-label mt-2">
+                    カテゴリ：{{$category->category_name}}
+                    </p>
                   @endif
                 @endforeach
 
@@ -65,10 +63,10 @@
         </div>
         @endforeach
 
-        </div>
       </div>
-      {{ $restaurants->appends(request()->query())->links() }}
     </div>
+    {{ $restaurants->appends(request()->query())->links() }}
   </div>
+</div>
  
 @endsection
